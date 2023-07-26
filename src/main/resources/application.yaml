@@ -1,0 +1,38 @@
+server:
+  port: 3000
+spring:
+  liquibase:
+    change-log: "classpath:db/changelog/db.changelog-master.yaml"
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+
+info:
+  application:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    name: postgres
+    url: jdbc:postgresql://localhost:5432/vivo?currentSchema=ecommerce_vivo
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+server:
+  port: 8882
+
+logging:
+  level:
+    root: debug
+
